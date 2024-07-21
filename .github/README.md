@@ -23,7 +23,6 @@ Mail Service a modular service that sends emails to users.
 - **Database Integration**: Connects to a PostgreSQL database to obtain data.
 - **Docker Support**: Can be run in a Docker container.
 - **Logging**: Logs information to the console.
-- **Testing**: Includes unit tests for the service.
 
 ## Prerequisites
 
