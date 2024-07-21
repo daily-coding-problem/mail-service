@@ -1,4 +1,4 @@
-package com.dcp.ap_service.v1.config;
+package com.dcp.api_service.v1.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

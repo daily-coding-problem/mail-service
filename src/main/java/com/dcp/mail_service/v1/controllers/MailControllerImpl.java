@@ -1,7 +1,7 @@
 package com.dcp.mail_service.v1.controllers;
 
-import com.dcp.ap_service.v1.entities.Problem;
-import com.dcp.ap_service.v1.services.APIService;
+import com.dcp.api_service.v1.entities.Problem;
+import com.dcp.api_service.v1.services.APIService;
 import com.dcp.mail_service.v1.services.ThymeleafTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

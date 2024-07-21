@@ -1,6 +1,6 @@
 package com.dcp.mail_service.v1.services;
 
-import com.dcp.ap_service.v1.services.APIService;
+import com.dcp.api_service.v1.services.APIService;
 import com.dcp.config.properties.Properties;
 import com.dcp.mail_service.v1.entities.Email;
 import org.springframework.beans.factory.annotation.Autowired;

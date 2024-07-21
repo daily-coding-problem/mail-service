@@ -1,4 +1,4 @@
-package com.dcp.ap_service.v1.entities;
+package com.dcp.api_service.v1.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

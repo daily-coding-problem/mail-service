@@ -1,7 +1,7 @@
 package com.dcp.mail_service.v1.services;
 
-import com.dcp.ap_service.v1.entities.Problem;
-import com.dcp.ap_service.v1.services.ProblemService;
+import com.dcp.api_service.v1.entities.Problem;
+import com.dcp.api_service.v1.services.ProblemService;
 import com.dcp.mail_service.v1.services.markdown.MarkdownConverter;
 import com.dcp.mail_service.v1.services.markdown.MarkdownDetector;
 

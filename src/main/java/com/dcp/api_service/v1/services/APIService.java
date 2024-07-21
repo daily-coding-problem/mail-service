@@ -1,8 +1,8 @@
-package com.dcp.ap_service.v1.services;
+package com.dcp.api_service.v1.services;
 
-import com.dcp.ap_service.v1.entities.User;
-import com.dcp.ap_service.v1.entities.Problem;
-import com.dcp.ap_service.v1.entities.StudyPlan;
+import com.dcp.api_service.v1.entities.User;
+import com.dcp.api_service.v1.entities.Problem;
+import com.dcp.api_service.v1.entities.StudyPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
