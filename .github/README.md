@@ -84,22 +84,6 @@ Or without Docker:
 mvn spring-boot:run
 ```
 
-## Running Tests
-
-Run the tests with the following command:
-
-```sh
-mvn test -Dspring.profiles.active=test
-```
-
-### Test the GitHub Actions via _Docker_
-
-To test the GitHub Actions via _Docker_, execute the following:
-
-```sh
-docker compose down -v && docker compose up --build db github-action-maven-test
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
