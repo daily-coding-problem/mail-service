@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:22-jdk-slim as builder
+FROM maven:3.9.8-sapmachine-22 as builder
 
 # The name of the application's jar file
 ARG APP_NAME
@@ -21,6 +21,9 @@ RUN mvn -ntp package -DskipTests
 
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:22-jdk-slim as layers
+
+# The name of the application's jar file
+ARG APP_NAME
 
 # Bring in the JAR file from the builder stage
 COPY --from=builder target/$APP_NAME.jar .

@@ -1,5 +1,5 @@
 server:
-    port: ${PORT:8080}
+    port: ${PORT:8081}
     servlet:
         context-path: /
 
@@ -9,8 +9,6 @@ spring:
     mail:
         host: ${MAIL_HOST}
         port: ${MAIL_PORT:-2525}
-        default:
-            from: ${DEFAULT_FROM_MAIL_ID:noreply@dcp.com}
         default-encoding: UTF-8
         properties:
             mail:
@@ -19,13 +17,27 @@ spring:
                     timeout: ${MAIL_TIMEOUT:5000}
                     writetimeout: ${MAIL_WRITE_TIMEOUT:5000}
     retry:
-        max-attempts: ${RETRY_MAX_ATTEMPTS:3}
-        max-delay: ${RETRY_MAX_DELAY:1000}
+        enable: true
+        maxAttempts: ${RETRY_MAX_ATTEMPTS:3}
+        maxDelay: ${RETRY_MAX_DELAY:1000}
+    datasource:
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:9998}/${DB_NAME:postgres}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        driver-class-name: org.postgresql.Driver
 
 logging:
     level:
         root: INFO
         org.springframework.web: INFO
 
-cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS:-*}
+properties:
+    mail:
+        from: ${DEFAULT_FROM_MAIL_ID:noreply@dcp.com}
+    services:
+        api:
+            url: ${API_SERVICE_URL:http://localhost:8080}
+        chatgpt:
+            url: ${CHATGPT_SERVICE_URL:http://localhost:8082}
+    cors:
+        allowed-origins: ${CORS_ALLOWED_ORIGINS:-*}
