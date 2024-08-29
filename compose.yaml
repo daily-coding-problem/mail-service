@@ -4,24 +4,24 @@ networks:
         external: true
 
 services:
-  mail-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-          - APP_NAME=MailService
-    image: mail-service:latest
-    container_name: mail-service
-    ports:
-        - "8081:8081"
-    environment:
-        - PORT=${PORT:-8081}
-        - MAIL_HOST=${MAIL_HOST}
-        - MAIL_PORT=${MAIL_PORT:-25}
-        - API_SERVICE_URL=${API_SERVICE_URL}
-        - CHATGPT_SERVICE_URL=${CHATGPT_SERVICE_URL}
-        - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-*}
-    env_file:
-        - .env
-    networks:
-        - dcp
+    mail-service:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                - APP_NAME=MailService
+        image: mail-service:latest
+        container_name: mail-service
+        ports:
+            - "8081:8081"
+        environment:
+            - ENVIRONMENT=${ENVIRONMENT:-development}
+            - PORT=${PORT:-8081}
+            - RESEND_API_KEY=${RESEND_API_KEY}
+            - API_SERVICE_URL=${API_SERVICE_URL}
+            - CHATGPT_SERVICE_URL=${CHATGPT_SERVICE_URL}
+            - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-*}
+        env_file:
+            - .env
+        networks:
+            - dcp

@@ -6,16 +6,6 @@ server:
 spring:
     application:
         name: mail-service
-    mail:
-        host: ${MAIL_HOST}
-        port: ${MAIL_PORT:-2525}
-        default-encoding: UTF-8
-        properties:
-            mail:
-                smtp:
-                    connectiontimeout: ${MAIL_CONNECTION_TIMEOUT:5000}
-                    timeout: ${MAIL_TIMEOUT:5000}
-                    writetimeout: ${MAIL_WRITE_TIMEOUT:5000}
     retry:
         enable: true
         maxAttempts: ${RETRY_MAX_ATTEMPTS:3}
@@ -32,8 +22,13 @@ logging:
         org.springframework.web: INFO
 
 properties:
+    environment:
+        name: ${ENVIRONMENT:development}
     mail:
-        from: ${DEFAULT_FROM_MAIL_ID:noreply@dcp.com}
+        from: ${DEFAULT_FROM_MAIL_ID:onboarding@resend.dev}
+        to: ${DEFAULT_TO_MAIL_ID:nicholasadamouemail@gmail.com}
+    resend:
+        api-key: ${RESEND_API_KEY}
     services:
         api:
             url: ${API_SERVICE_URL:http://localhost:8080}

@@ -1,5 +1,6 @@
 package com.dcp.config.properties;
 
+import com.dcp.config.properties.validations.ValidEnvironment;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +19,28 @@ public class Properties {
 	private final Mail mail = new Mail();
 	private final Services services = new Services();
 	private final Cors cors = new Cors();
+	private final Resend resend = new Resend();
+	private final Environment environment = new Environment();
+
+	@Data
+	@Validated
+	public static class Environment {
+
+		@ValidEnvironment
+		private String name;
+	}
 
 	@Data
 	@Validated
 	public static class Mail {
 		private String from;
+		private String to;
+	}
+
+	@Data
+	@Validated
+	public static class Resend {
+		private String apiKey;
 	}
 
 	@Data

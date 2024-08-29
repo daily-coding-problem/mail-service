@@ -13,28 +13,22 @@ import java.util.Map;
 @Setter
 public class Email {
 
-	private String recipient;
+	private String to;
 	private String from;
 	private String subject;
-	private String text;
-	private Action action;
-	private Map<String, Object> properties;
+	private String html;
 
 	public Email() {}
 
 	public Email(
-		String recipient,
+		String to,
 		String from,
 		String subject,
-		String text,
-		Action action,
-		Map<String, Object> properties) {
-		this.recipient = recipient;
+		String html) {
+		this.to = to;
 		this.from = from;
 		this.subject = subject;
-		this.text = text;
-		this.action = action;
-		this.properties = properties;
+		this.html = html;
 	}
 
 	@Override
