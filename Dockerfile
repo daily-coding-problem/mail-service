@@ -38,4 +38,4 @@ COPY --from=layers spring-boot-loader/ .
 COPY --from=layers application/ .
 
 # Run the extracted layers
-CMD ["java", "org.springframework.boot.loader.JarLauncher"]
+CMD ["java", "org.springframework.boot.loader.launch.JarLauncher"]
