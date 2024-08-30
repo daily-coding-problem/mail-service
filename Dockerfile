@@ -1,9 +1,6 @@
 # Use an official OpenJDK runtime as a parent image
 FROM maven:3.9.8-sapmachine-22 as builder
 
-# The name of the application's jar file
-ARG APP_NAME
-
 # Set the working directory to /app
 WORKDIR /app
 
@@ -26,15 +23,15 @@ FROM openjdk:22-jdk-slim as layers
 ARG APP_NAME
 
 # Bring in the JAR file from the builder stage
-COPY --from=builder target/$APP_NAME.jar .
+COPY --from=builder /app/target/${APP_NAME}.jar .
 
 # Extract the layers
-RUN java -Djarmode=layertools -jar $APP_NAME.jar extract
+RUN java -Djarmode=layertools -jar ${APP_NAME}.jar extract
 
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:22-jdk-slim as runtime
 
-# Brining in the extracted layers from the layers stage
+# Bringing in the extracted layers from the layers stage
 COPY --from=layers dependencies/ .
 COPY --from=layers snapshot-dependencies/ .
 COPY --from=layers spring-boot-loader/ .
