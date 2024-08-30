@@ -25,7 +25,6 @@ public class Properties {
 	@Data
 	@Validated
 	public static class Environment {
-
 		@ValidEnvironment
 		private String name;
 	}

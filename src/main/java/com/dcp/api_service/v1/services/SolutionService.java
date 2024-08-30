@@ -22,10 +22,10 @@ public class SolutionService {
 	Here is a practice interview question that you have been asked to provide a solution for:
 	""";
 
-	private final ChatGPTClient chatGPTClientService;
+	private final ChatGPTClient chatGPTClient;
 
-	public SolutionService(ChatGPTClient chatGPTClientService) {
-		this.chatGPTClientService = chatGPTClientService;
+	public SolutionService(ChatGPTClient chatGPTClient) {
+		this.chatGPTClient = chatGPTClient;
 	}
 
 	public String getSolutionFromChatGPT(String userPrompt) {
@@ -34,7 +34,7 @@ public class SolutionService {
 			new MultiChatMessage(ChatRole.USER, userPrompt)
 		);
 
-		Mono<String> response =  chatGPTClientService.multiChat(messages);
+		Mono<String> response =  chatGPTClient.multiChat(messages);
 
 		return response.block();
 	}
