@@ -47,6 +47,7 @@ public class Properties {
 	public static class Services {
 		private final API api = new API();
 		private final ChatGPT chatGPT = new ChatGPT();
+		private final Email email = new Email();
 
 		@Data
 		@Validated
@@ -57,6 +58,12 @@ public class Properties {
 		@Data
 		@Validated
 		public static class ChatGPT {
+			private String url;
+		}
+
+		@Data
+		@Validated
+		public static class Email {
 			private String url;
 		}
 	}

@@ -10,4 +10,5 @@ public interface ProblemService {
 	Problem createProblem(Problem problem);
 	String getSolution(Problem problem);
 	Problem getRandomProblem();
+	void updateProblem(Problem problem);
 }

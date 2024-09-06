@@ -61,6 +61,13 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 	@Override
+	public void updateProblem(Problem problem) {
+		String url = properties.getServices().getApi().getUrl() + "/api/v1/problems/" + problem.getSlug();
+
+		restTemplate.put(url, problem);
+	}
+
+	@Override
 	public String getSolution(Problem problem) {
 		String prompt = generatePrompt(problem);
 
