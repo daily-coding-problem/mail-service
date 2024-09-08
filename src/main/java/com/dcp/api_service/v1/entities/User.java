@@ -11,8 +11,15 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class User {
 	private Long id;
+
 	private String email;
+
 	private boolean isPremium;
+
 	private String timezone;
+
 	private Timestamp createdAt;
+
+	private String unsubscribeToken;
+	private Timestamp unsubscribeTokenExpiresAt;
 }

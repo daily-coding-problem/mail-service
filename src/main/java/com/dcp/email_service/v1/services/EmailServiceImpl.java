@@ -19,9 +19,13 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public String generate(Problem problem) {
+	public String generate(Problem problem, String unsubscribeToken) {
 		String url = properties.getServices().getEmail().getUrl() + "/api/v1/email/generate";
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+
+		if (unsubscribeToken != null) {
+			uriBuilder.queryParam("unsubscribeToken", unsubscribeToken);
+		}
 
 		return restTemplate.postForObject(uriBuilder.toUriString(), problem, String.class);
 	}

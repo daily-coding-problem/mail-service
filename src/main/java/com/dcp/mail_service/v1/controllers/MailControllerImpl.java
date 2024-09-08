@@ -1,6 +1,7 @@
 package com.dcp.mail_service.v1.controllers;
 
 import com.dcp.api_service.v1.entities.Problem;
+import com.dcp.api_service.v1.entities.User;
 import com.dcp.api_service.v1.services.APIService;
 import com.dcp.api_service.v1.services.ProblemService;
 import com.dcp.email_service.v1.services.EmailService;
@@ -36,20 +37,31 @@ public class MailControllerImpl implements MailController {
 	}
 
 	@Override
-	public String getEmailContentForProblem(boolean provideSolution) {
+	public String getEmailContentForRandomProblem(boolean provideSolution) {
 		Problem problem = apiService.getRandomProblem();
 
 		return generateEmailContent(problem, provideSolution);
 	}
 
+	@Override
+	public String getEmailContentForProblemForUser(String slug, User user) {
+		Problem problem = apiService.getProblemBySlug(slug);
+
+		return generateEmailContent(problem, user.isPremium(), user.getUnsubscribeToken());
+	}
+
 	private String generateEmailContent(Problem problem, boolean provideSolution) {
+		return generateEmailContent(problem, provideSolution, null);
+	}
+
+	private String generateEmailContent(Problem problem, boolean provideSolution, String unsubscribeToken) {
 		if (problem == null) {
 			return "Problem not found";
 		}
 
 		if (provideSolution) {
 			if (!problem.getSolution().isEmpty()) {
-				return emailService.generate(problem);
+				return emailService.generate(problem, unsubscribeToken);
 			}
 
 			String solution = problemService.getSolution(problem);
@@ -69,36 +81,11 @@ public class MailControllerImpl implements MailController {
 			}
 		}
 
-		return emailService.generate(problem);
-	}
-
-	@Override
-	public void sendEmail(String slug, Email email) throws ResendException {
-		Problem problem = apiService.getProblemBySlug(slug);
-
-		if (problem == null) {
-			return;
-		}
-
-		String html = emailService.generate(problem);
-		email.setHtml(html);
-		email.setSubject("Daily Coding Problem - " + problem.getTitle());
-
-		mailService.sendEmail(email);
+		return emailService.generate(problem, unsubscribeToken);
 	}
 
 	@Override
 	public void sendEmail(Email email) throws ResendException {
-		Problem problem = apiService.getRandomProblem();
-
-		if (problem == null) {
-			return;
-		}
-
-		String html = emailService.generate(problem);
-		email.setHtml(html);
-		email.setSubject("Daily Coding Problem - " + problem.getTitle());
-
 		mailService.sendEmail(email);
 	}
 }

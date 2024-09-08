@@ -1,7 +1,9 @@
 package com.dcp.mail_service.v1.controllers;
 
+import com.dcp.api_service.v1.entities.User;
 import com.dcp.mail_service.v1.entities.Email;
 import com.resend.core.exception.ResendException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,13 +18,15 @@ public interface MailController {
 
 	@GetMapping("/problem/random")
 	@ResponseBody
-	String getEmailContentForProblem(
+	String getEmailContentForRandomProblem(
 		@RequestParam(name = "provide_solution", required = false, defaultValue = "false") boolean provideSolution
 	);
 
-	@PostMapping("/send/problem/{slug}")
-	void sendEmail(@PathVariable(name = "slug") String slug, @RequestBody Email email) throws ResendException;
+	@PostMapping("/problem/{slug}")
+	@ResponseBody
+	String getEmailContentForProblemForUser(@PathVariable String slug, @RequestBody @Validated User user);
 
-	@PostMapping("/send/problem/random")
-	void sendEmail(@RequestBody Email email) throws ResendException;
+	@PostMapping("/send")
+	@ResponseBody
+	void sendEmail(@RequestBody @Validated Email email) throws ResendException;
 }
